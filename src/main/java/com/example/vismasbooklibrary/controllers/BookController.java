@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -26,7 +25,6 @@ public class BookController {
         productServiceImpl.createBook(book);
     }
 
-    // rest api to take a book from the library
     @GetMapping("/GUID/{GUID}")
     public Book findOneBook(@PathVariable Long GUID) throws IOException {
       return productServiceImpl.findOneBook(GUID);
@@ -57,7 +55,6 @@ public class BookController {
         return productServiceImpl.filterByName(name);
     }
 
-    // This is improvisation "status"
     @GetMapping("/status/{status}")
     public List<Book> filterByStatus(@PathVariable String status) {
         return productServiceImpl.filterByStatus(status);
