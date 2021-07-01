@@ -18,15 +18,15 @@ public class ProductServiceImpl {
     ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Book> fetchBooks() throws IOException {
-        List<Book> books = objectMapper.readValue(new File("C:\\Users\\PC\\Documents\\JSONfile\\file.json"), objectMapper.getTypeFactory().constructCollectionType(List.class, Book.class));
+        List<Book> books = objectMapper.readValue(new File("src/main/resources/static/file.json"), objectMapper.getTypeFactory().constructCollectionType(List.class, Book.class));
         return books;
     }
 
     public void createBook(Book book) throws IOException {
         List<Book> books = fetchBooks();
         books.add(book);
-        objectMapper.writeValue(Paths.get("C:\\Users\\PC\\Documents\\JSONfile\\file.json").toFile(), books);
-        List<Book> books2 = objectMapper.readValue(new File("C:\\Users\\PC\\Documents\\JSONfile\\file.json"), objectMapper.getTypeFactory().constructCollectionType(List.class, Book.class));
+        objectMapper.writeValue(Paths.get("src/main/resources/static/file.json").toFile(), books);
+        List<Book> books2 = objectMapper.readValue(new File("src/main/resources/static/file.json"), objectMapper.getTypeFactory().constructCollectionType(List.class, Book.class));
         System.out.println(books2);
     }
 
@@ -93,7 +93,7 @@ public class ProductServiceImpl {
         List<Book> books = fetchBooks().stream()
                 .filter(book -> !book.getGuid().equals(guid))
                 .collect(Collectors.toList());
-        objectMapper.writeValue(Paths.get("C:\\Users\\PC\\Documents\\JSONfile\\file.json").toFile(), books);
+        objectMapper.writeValue(Paths.get("src/main/resources/static/file.json").toFile(), books);
     }
 
     @SneakyThrows
