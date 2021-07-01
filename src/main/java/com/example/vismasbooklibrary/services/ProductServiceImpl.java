@@ -95,33 +95,22 @@ public class ProductServiceImpl {
                 .collect(Collectors.toList());
         objectMapper.writeValue(Paths.get("C:\\Users\\PC\\Documents\\JSONfile\\file.json").toFile(), books);
     }
+
     @SneakyThrows
     public void borrowBooks(String name, Map<String, Integer> booksBasket) {
         List<Book> books = fetchBooks();
-        if(!acceptableDuration(booksBasket)) {
+        if (!acceptableDuration(booksBasket)) {
         }
         for (Map.Entry<String, Integer> entry : booksBasket.entrySet()) {
-            for(Book book : books) {
-               if(book.getName().equals(entry.getKey())){
-                   book.setBorrower(name);
+            for (Book book : books) {
+                if (book.getName().equals(entry.getKey())) {
+                    book.setBorrower(name);
                 }
-//            List<Book> books = fetchBooks().stream()
-//                    .forEach(book. -> !book.getGuid().equals(guid))
-//                    .collect(Collectors.toList());
-//            for (Map.Entry<Book, Integer> entry : booksBasket.entrySet()) {
-//                entry.getKey().setBorrower(name);
 
             }
         }
 
-        }
-
-//        booksOrder.entrySet().stream()
-//                .forEach(entry -> entry.getKey());
-//
-//        booksOrder
-//        List<Book> books = fetchBooks().stream()
-
+    }
 
     private Boolean acceptableDuration(Map<String, Integer> booksBasket) {
         Boolean answer = true;
@@ -132,4 +121,4 @@ public class ProductServiceImpl {
         }
         return answer;
     }
-        }
+}
